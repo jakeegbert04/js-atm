@@ -27,7 +27,7 @@ HAVE FUN
 */
 
 class User {
-  constructor(firstName, lastName, email, password, balance=0, deposit=0, withdraw=0) {
+  constructor(firstName, lastName, email, password, balance = 0, deposit = 0, withdraw = 0) {
     this.firstName = firstName
     this.lastName = lastName
     this.email = email
@@ -36,18 +36,47 @@ class User {
     this.deposit = deposit
     this.withdraw = withdraw
   }
-  showBalance() {
-    alert(`Your balance is ${this.balance}`)
-  }
 }
 
+function showBalance() {
+  alert(`Your balance is ${jake.balance}`)
+}
+
+function depositCash() {
+  let depositAmount = Number(prompt("How much would you like to deposit?"))
+  jake.deposit = depositAmount
+  jake.balance = jake.balance + depositAmount
+  alert(`
+  you have deposited $${depositAmount} amount of money 
+  
+  Your new balance is $${jake.balance}
+  `)
+}
+
+function withdrawCash() {
+  let withdrawAmount = Number(prompt("How much would you like to withdraw?"))
+  jake.withdraw = withdrawAmount
+  jake.balance = jake.balance - withdrawAmount
+  alert(`
+  you have have withdrawed $${withdrawAmount} amount of money 
+  
+  Your new balance is $${jake.balance}
+  `)
+}
 // const isRequired = () => { 
 //     throw new Error(`Missing Parameter`)
 // }
 // const money = prompt("money?")
+// function newUser() {
+//   const userFName = prompt("What is your first name?")
+//   const userLName = prompt("What is your last name?")
+//   const userEmail = prompt("What is your email")
+//   const userPassword = prompt("What would you like your password to be?")
+//   const `${userFName}` = new User()
+// }
+let jake = new User("Jake", "egbert", "Jake@devpipeline.com", "1234")
 
-const jake = new User("Jake", "egbert", "Jake@devpipeline.com", "1234")
-const mitch = new User("mitch", "log", "mitch@devpipeline.com", "1234")
+console.log(jake)
 
 function login() {
   const email = prompt("Please enter your email")
@@ -61,15 +90,15 @@ function login() {
 // login()
 
 function menu() {
-const menuInput = prompt(`
-[1] View Balance
-[2] Deposit Money
-[3] Withdraw Money
-[4] Quit (Or Cancel)
-`)
-while(true) {
+  while(true) {
+  const menuInput = prompt(`
+  [1] View Balance
+  [2] Deposit Money
+  [3] Withdraw Money
+  [4] Quit (Or Cancel)
+  `)
   if (menuInput === "1") {
-    viewBalance()
+    showBalance()
   } else if (menuInput === "2") {
     depositCash()
   } else if (menuInput === "3") {
@@ -84,18 +113,19 @@ while(true) {
 }
 
 menu()
+console.log(jake)
 
 
-function viewBalance() {
-  jake.showBalance()
-}
+// function viewBalance() {
+//   jake.showBalance()
+// }
 
-function depositCash() {
+// function depositCash() {
 
-}
+// }
 
-function withdrawCash() {
+// function withdrawCash() {
 
-}
+// }
 
 // console.log(jake.balance)
