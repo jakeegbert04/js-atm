@@ -1,30 +1,3 @@
-/*
-OOP - ATM assignment
-********************************************
-Due: Mon 3/6
-Virtual ATM Machine (OOP Project)
-- Build a console app that mimics an atm machine
-- Persitent balance (CRUDable)
-- Main Menu that routes to other menus 
-  *********
-  Welcome
-  1) view balance
-   ..... etc
-  *********
-- Redirect back to the main menu
-- Error handling for withdrawals 
-- Deposit
-- Withdrawal
-- View Balance
-- Exit the program via selection
-- Receipt 
-- BONUS:
-  - Include pin number for users
-  - Easter Egg code for FBI Lockout
-
-
-HAVE FUN
-*/
 
 class User {
   constructor(firstName, lastName, email, password, balance = 0, deposit = 0, withdraw = 0) {
@@ -38,8 +11,10 @@ class User {
   }
 }
 
+const jake = new User("Jake", "egbert", "j.com", "1234")
+
 function showBalance() {
-  alert(`Your balance is ${jake.balance}`)
+  alert(`Your balance is $${jake.balance}`)
 }
 
 function depositCash() {
@@ -63,31 +38,13 @@ function withdrawCash() {
   Your new balance is $${jake.balance}
   `)
 }
-// const isRequired = () => { 
-//     throw new Error(`Missing Parameter`)
-// }
-// const money = prompt("money?")
-// function newUser() {
-//   const userFName = prompt("What is your first name?")
-//   const userLName = prompt("What is your last name?")
-//   const userEmail = prompt("What is your email")
-//   const userPassword = prompt("What would you like your password to be?")
-//   const `${userFName}` = new User()
-// }
-let jake = new User("Jake", "egbert", "Jake@devpipeline.com", "1234")
 
-console.log(jake)
-
-function login() {
-  const email = prompt("Please enter your email")
-  const password = prompt("Please enter your password")
-  if (email === jake.email && password === jake.password) {
-    menu()
-  } else{
-    alert("Invaild email or password")
-  }
+function receiptAmount() {
+  alert(`
+  You've deposited $${jake.deposit}
+  You've withdrawn $${jake.withdraw}
+  `)
 }
-// login()
 
 function menu() {
   while(true) {
@@ -97,35 +54,29 @@ function menu() {
   [3] Withdraw Money
   [4] Quit (Or Cancel)
   `)
-  if (menuInput === "1") {
+  if (menuInput === null) {
+    return
+  } else if (menuInput === "1") {
     showBalance()
   } else if (menuInput === "2") {
     depositCash()
   } else if (menuInput === "3") {
     withdrawCash()
   } else if (menuInput === "4") {
-    return false;
-  } else {
-    alert("Invaild Option")
+    receiptAmount()
     return false;
   }
 }
 }
 
-menu()
-console.log(jake)
 
+function login() {
+  const email = prompt("Please enter your email")
+  const password = prompt("Please enter your password")
 
-// function viewBalance() {
-//   jake.showBalance()
-// }
-
-// function depositCash() {
-
-// }
-
-// function withdrawCash() {
-
-// }
-
-// console.log(jake.balance)
+  if (email === jake.email && password === jake.password) {
+    menu()
+  } else{
+    alert("Invaild email or password")
+  }
+}
