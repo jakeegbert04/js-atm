@@ -1,6 +1,6 @@
 
 class User {
-  constructor(firstName, lastName, email, password, balance = 0, deposit = 0, withdraw = 0) {
+  constructor(firstName, lastName, email, password, balance = 0.00, deposit = 0.00, withdraw = 0.00) {
     this.firstName = firstName
     this.lastName = lastName
     this.email = email
@@ -18,25 +18,33 @@ function showBalance() {
 }
 
 function depositCash() {
-  let depositAmount = Number(prompt("How much would you like to deposit?"))
-  jake.deposit = depositAmount
-  jake.balance = jake.balance + depositAmount
-  alert(`
-  you have deposited $${depositAmount} amount of money 
-  
-  Your new balance is $${jake.balance}
-  `)
+  let depositAmount = parseFloat(prompt("How much would you like to deposit?"))
+  if(depositAmount <= 0) {
+    alert("Can't deposit negative amount")
+  } else {
+    jake.deposit = depositAmount
+    jake.balance = jake.balance + depositAmount
+    alert(`
+    you have deposited $${depositAmount} amount of money 
+    
+    Your new balance is $${jake.balance}
+    `)
+  }
 }
 
 function withdrawCash() {
-  let withdrawAmount = Number(prompt("How much would you like to withdraw?"))
-  jake.withdraw = withdrawAmount
-  jake.balance = jake.balance - withdrawAmount
-  alert(`
-  you have have withdrawed $${withdrawAmount} amount of money 
-  
-  Your new balance is $${jake.balance}
-  `)
+  let withdrawAmount = parseFloat(prompt("How much would you like to withdraw?"))
+  if (withdrawAmount > jake.balance) {
+    alert("Balance can't be become negative")
+  } else {
+    jake.withdraw = withdrawAmount
+    jake.balance = jake.balance - withdrawAmount
+    alert(`
+    you have have withdrawed $${withdrawAmount} amount of money 
+    
+    Your new balance is $${jake.balance}
+    `)
+  }
 }
 
 function receiptAmount() {
